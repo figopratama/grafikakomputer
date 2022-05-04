@@ -1,48 +1,108 @@
+import pandas as pd
 import matplotlib.pyplot as plt
-plt.xlabel("X Axis")
-plt.ylabel("Y Axis")
+import seaborn as sns; sns.set()
 
-def bres(x1,y1,x2,y2):
-    x,y = x1,y1
-    dx = abs(x2 - x1)
-    dy = abs(y2 - y1)
-    gradient = dy/float(dx)
+print("\n")
+print("Masukkan nilai (x1, y1) dan (x2, y2)")
+x0 = int(input("Input x1: ")) 
+y0 = int(input("Input y1: ")) 
+x1 = int(input("Input x2: ")) 
+y1 = int(input("Input y2: "))
 
-    if gradient > 1:
-        dx,dy = dy, dx
-        x, y = y, x
-        x1, y1 = y1, x1
-        x2, y2 = y2, x2
-        
-    p = 2 * dy - dx
-    print('x = %s, y = %s' % (x,y))
-    #initializing
-    xcoordinates = (x)
-    ycoordinates = (y)
 
-    for k in range(2, dx):
-        if p >0:
-            y = y + 1 if y < y2 else y - 1
-            p = p + 2 * (dy - dx)
-        else:
-            p = p + 2 * dy
-            
-        x = x + 1 if x < x2 else x - 1
+print("\n")
+print("---------- DIKETAHUI ----------")
 
-        print('x = %s, y = %s' % (x,y))
-        xcoordinates.append(x)
-        ycoordinates.append(y)
+x = x0
+y = y0
 
-    plt.plot(xcoordinates,ycoordinates)
-    plt.show()
+#Menghitung dX dan dY.
+dx = x1 - x0
+dy = y1 - y0
+print("dx = ", dx)
+print("dy = ", dy)
 
-def main():
-    x1 = int(input("Enter the starting point of x: "))
-    y1 = int(input("Enter the starting point of y: "))
-    x2 = int(input("Enter the end point of x: "))
-    y2 = int(input("Enter the end point of y: "))
+#Menghitung gradien garis (m).
+m = dy/dx
+print("m  = ", m)
+
+if (0 <= m <= 1): #Lanjutkan program apabila (0 <= m <= 1).
     
-    bres(x1, y1, x2, y2)
+    #Menghitung parameter (p).
+    p = (2 * dy) - dx
+    print("p  = ", p)
+    print("\n")
 
-if __name__ == "__main__":
-    main()
+    #Membuat array untuk setiap nilai X, Y, dan P.
+    x_point = []
+    y_point = []
+    p_point = []
+    x_ = []
+    y_ = []
+    p_ = []
+    
+    
+    print("------------TABEL-------------\n")
+    
+    for x in range(10): #Membuat kolom hasil sebanyak 10 nilai.
+        x_point.append(x)
+        y_point.append(y)
+        p_point.append(p)
+        
+        if(p >= 0): #Jalankan looping berikut apabila (p >= 0)
+            x = x + 1
+            x_.append(x)
+            y = y + 1
+            y_.append(y)
+            p = p - (2 * (dx - dy))
+            p_.append(p)
+            
+        else: #Jalankan looping berikut apabila (p < 0)
+            x = x + 1
+            x_.append(x)
+            y = y
+            y_.append(y)
+            p = p + (2 * dy)
+            p_.append(p)
+        
+else: #Lanjutkan program apabila (m > 1)
+
+    #Menghitung parameter (p).
+    p = (2 * dx) - dy
+    print("p  = ", p)
+    print("\n")
+
+    #Membuat array untuk setiap nilai X, Y, dan P.
+    x_point = []
+    y_point = []
+    p_point = []
+    x_ = []
+    y_ = []
+    p_ = []
+    
+    for x in range(10): #Membuat kolom hasil sebanyak 10 nilai.
+        x_point.append(x)
+        y_point.append(y)
+        p_point.append(p)
+        
+        if(p >= 0): #Jalankan looping berikut apabila (p >= 0)
+            x = x + 1
+            x_.append(x)
+            y = y + 1
+            y_.append(y)
+            p = p + (2 * (dx - dy))
+            p_.append(p)
+            
+        else: #Jalankan looping berikut apabila (p >= 0)
+            x = x 
+            x_.append(x)
+            y = y + 1
+            y_.append(y)
+            p = p + (2 * dx)
+            p_.append(p)
+    
+
+print(pd.DataFrame({"Titik X":x_point,"Titik Y":y_point,"Parameter":p_point}))
+plt.scatter(x_point, y_point, color='red')
+plt.plot(x_point, y_point)
+plt.show()
