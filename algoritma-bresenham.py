@@ -4,10 +4,10 @@ import seaborn as sns; sns.set()
 
 print("\n")
 print("Masukkan nilai (x1, y1) dan (x2, y2)")
-x0 = int(input("Input x1: ")) 
-y0 = int(input("Input y1: ")) 
-x1 = int(input("Input x2: ")) 
-y1 = int(input("Input y2: "))
+x0 = int(input("Input x1: ")) #Fungsi input nilai x1
+y0 = int(input("Input y1: ")) #Fungsi input nilai y1
+x1 = int(input("Input x2: ")) #Fungsi input nilai x2
+y1 = int(input("Input y2: ")) #Fungsi input nilai y2
 
 
 print("\n")
@@ -26,6 +26,9 @@ print("dy = ", dy)
 m = dy/dx
 print("m  = ", m)
 
+
+
+ 
 if (0 <= m <= 1): #Lanjutkan program apabila (0 <= m <= 1).
     
     #Menghitung parameter (p).
@@ -102,7 +105,7 @@ else: #Lanjutkan program apabila (m > 1)
             p_.append(p)
     
 
-print(pd.DataFrame({"Titik X":x_point,"Titik Y":y_point,"Parameter":p_point}))
-plt.scatter(x_point, y_point, color='red')
+print(pd.DataFrame({"Titik X":x_point,"Titik Y":y_point,"Parameter":p_point})) #Membuat kolom untuk output tabel
+plt.scatter(x_point, y_point, color='red') #Membuat titik merah pada setiap titik (x, y)
 plt.plot(x_point, y_point)
-plt.show()
+plt.show() #Menampilkan output keseluruhan
