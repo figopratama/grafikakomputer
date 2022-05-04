@@ -26,6 +26,8 @@ print("dy = ", dy)
 m = dy/dx
 print("m  = ", m)
 
+
+
 #Menghitung titik X, titik Y, dan parameter berdasarkan nilai gradien (m)
 if (0 <= m <= 1): #Lanjutkan program apabila (0 <= m <= 1).
     
@@ -94,7 +96,7 @@ else: #Lanjutkan program apabila (m > 1)
             p = p + (2 * (dx - dy))
             p_.append(p)
             
-        else: #Jalankan looping berikut apabila (p >= 0)
+        else: #Jalankan looping berikut apabila (p < 0)
             x = x 
             x_.append(x)
             y = y + 1
