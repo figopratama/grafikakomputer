@@ -4,21 +4,22 @@ import seaborn as sns; sns.set()
 
 print("\n")
 print("Masukkan nilai (x1, y1) dan (x2, y2)")
-x0 = int(input("Input x1: ")) #Fungsi input nilai x1
-y0 = int(input("Input y1: ")) #Fungsi input nilai y1
-x1 = int(input("Input x2: ")) #Fungsi input nilai x2
-y1 = int(input("Input y2: ")) #Fungsi input nilai y2
-
+x0 = int(input("Input x1: ")) 
+y0 = int(input("Input y1: ")) 
+x1 = int(input("Input x2: ")) 
+y1 = int(input("Input y2: "))
 
 print("\n")
-print("---------- DIKETAHUI ----------")
+print("---------- DIKETAHUI ----------\n")
 
 x = x0
 y = y0
-
+print("(x0, y0) = (", x0, ",", y0, ")")
+print("(x1, y1) = (", x1, ",", y1, ")")
 #Menghitung dX dan dY.
 dx = x1 - x0
 dy = y1 - y0
+print("maka,")
 print("dx = ", dx)
 print("dy = ", dy)
 
@@ -26,9 +27,6 @@ print("dy = ", dy)
 m = dy/dx
 print("m  = ", m)
 
-
-
-#Menghitung titik X, titik Y, dan parameter berdasarkan nilai gradien (m)
 if (0 <= m <= 1): #Lanjutkan program apabila (0 <= m <= 1).
     
     #Menghitung parameter (p).
@@ -47,7 +45,7 @@ if (0 <= m <= 1): #Lanjutkan program apabila (0 <= m <= 1).
     
     print("------------TABEL-------------\n")
     
-    for x in range(10): #Membuat kolom hasil sebanyak 10 nilai.
+    for i in range(x1): #Membuat kolom hasil sampai titik X = X1 (koordinat akhir). 
         x_point.append(x)
         y_point.append(y)
         p_point.append(p)
@@ -83,7 +81,10 @@ else: #Lanjutkan program apabila (m > 1)
     y_ = []
     p_ = []
     
-    for x in range(10): #Membuat kolom hasil sebanyak 10 nilai.
+    
+    print("------------TABEL-------------\n")
+    
+    for i in range(y1): #Membuat kolom hasil sebanyak 10 nilai.
         x_point.append(x)
         y_point.append(y)
         p_point.append(p)
@@ -105,7 +106,7 @@ else: #Lanjutkan program apabila (m > 1)
             p_.append(p)
     
 
-print(pd.DataFrame({"Titik X":x_point,"Titik Y":y_point,"Parameter":p_point})) #Membuat kolom untuk output tabel
-plt.scatter(x_point, y_point, color='red') #Membuat titik merah pada setiap titik (x, y)
+print(pd.DataFrame({"Titik X":x_point,"Titik Y":y_point,"Parameter":p_point}))
+plt.scatter(x_point, y_point, color='red')
 plt.plot(x_point, y_point)
-plt.show() #Menampilkan output keseluruhan
+plt.show()
